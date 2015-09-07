@@ -11,7 +11,7 @@ Source0:        %{name}-%{version}.tar.gz
 Requires:       docker
 
 %description
-
+Spec file for packaging docker centos7 image as RPM
 
 %prep
 %setup -q -n %{name}-%{version} -c
@@ -22,6 +22,11 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p %{buildroot}/%{_datadir}/%{name}-%{version}
 cp %{_builddir}/%{name}-%{version}/centos.tar %{buildroot}/%{_datadir}/%{name}-%{version}
 
+%postun
+if [ $1 -eq 0 ] ; then
+    docker rmi centos
+fi
+
 %post
 docker load < %{_datadir}/%{name}-%{version}/centos.tar
 
@@ -31,5 +36,6 @@ docker load < %{_datadir}/%{name}-%{version}/centos.tar
 
 
 %changelog
-* Thu Sep  3 2015 lmohanty
+* Mon Sep  7 2015 Lalatendu Mohanty<lmohanty@redhat.com>
+- Initial commit
 - 
