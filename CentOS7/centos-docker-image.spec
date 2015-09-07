@@ -27,7 +27,7 @@ docker load < %{_datadir}/%{name}-%{version}/centos.tar
 
 %files
 %{_datadir}/%{name}-%{version}/centos.tar
-%doc centos-7.ks README
+%doc centos-7.ks README.md
 
 
 %changelog

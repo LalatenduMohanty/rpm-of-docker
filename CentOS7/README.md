@@ -2,7 +2,9 @@ docker pull centos
 
 docker save --output=centos.tar centos
 
-tar czvf centos-docker-image-1.0.tar.gz centos.tar README centos-7.ks
+tar czvf centos-docker-image-1.0.tar.gz centos.tar README.md centos-7.ks
+
+md5sum centos-docker-image-1.0.tar.gz >sources
 
 fedpkg --dist f22 srpm
 
